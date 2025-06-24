@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Farm CRM Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="newdashboard.css"/>
+</head>
+<body><header class="header">         
+    <div class="hamburger" id="hamburger">             
+        <span></span>             
+        <span></span>             
+        <span></span>         
+    </div>                  
+
+    <div class="header-logo">
+        <!-- Logo image goes here -->
+        <img src="logo.png" alt="DairyFarm Logo" class="logo-image">
+        <div class="header-logo-icon">🐄</div>             
+        <div class="header-logo-text">                 
+            <h1>DairyFarm</h1>                 
+            <p>Farm Management System</p>             
+        </div>         
+    </div>                  
+
+    <div class="header-right">
+        <!-- Notification icons -->
+        <div class="header-icons">
+            <div class="icon-item" title="Messages">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span class="notification-badge">3</span>
+            </div>
+            
+            <div class="icon-item" title="Notifications">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span class="notification-badge">5</span>
+            </div>
+        </div>
+        
+        <!-- User profile section -->
+        <div class="user-profile">
+            <img src="company image.jpg" alt="User Profile" class="profile-picture">
+            <span class="user-name" id="userName">Manasa</span>
+        </div>
+        
+        <div class="header-info">                 
+            <div class="current-date" id="currentDate"></div>                 
+            <div class="current-time" id="currentTime"></div>             
+        </div>         
+    </div>     
+</header>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>🐄 DairyFarm</h1>
+                <p>Farm Management System</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <a class="nav-link active" onclick="showContent('dashboard')">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('cattle-management')">
+                        <span class="nav-icon">🐄</span>
+                        Cattle Management
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('certification')">
+                        <span class="nav-icon">📜</span>
+                        Certification
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('clients')">
+                        <span class="nav-icon">👥</span>
+                        Clients
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('communication')">
+                        <span class="nav-icon">💬</span>
+                        Communication
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('contact-management')">
+                        <span class="nav-icon">📞</span>
+                        Contact Management
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('customer-management')">
+                        <span class="nav-icon">🤝</span>
+                        Customer Management
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('customer-profile')">
+                        <span class="nav-icon">👤</span>
+                        Customer Profile
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('employee-management')">
+                        <span class="nav-icon">👷</span>
+                        Employee Management
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('financial-management')">
+                        <span class="nav-icon">💰</span>
+                        Financial Management
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('farmer-relationship')">
+                        <span class="nav-icon">🚜</span>
+                        Farmer Relationship
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('herd-management')">
+                        <span class="nav-icon">🐮</span>
+                        Herd Management
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('livestock-management')">
+                        <span class="nav-icon">🐄</span>
+                        Livestock Management
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('orders')">
+                        <span class="nav-icon">📋</span>
+                        Orders
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('payment-billing')">
+                        <span class="nav-icon">💳</span>
+                        Payment & Billing
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('products')">
+                        <span class="nav-icon">🥛</span>
+                        Products
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('product-analysis')">
+                        <span class="nav-icon">📈</span>
+                        Product Analysis
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('product-catalog')">
+                        <span class="nav-icon">📚</span>
+                        Product Catalog
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" onclick="showContent('sales-marketing')">
+                        <span class="nav-icon">📢</span>
+                        Sales & Marketing
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Dashboard Content -->
+            <div id="dashboard" class="content-frame active">
+                <div class="dashboard-header">
+                    <div class="header-left">
+                        <div class="header-logo">🐄</div>
+                        <div class="header-content">
+                            <h1>Farm Dashboard</h1>
+                            <p>Welcome back! Here's what's happening on your dairy farm today.</p>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="header-info">
+                            <div class="current-date" id="currentDateDashboard"></div>
+                            <div class="current-time" id="currentTimeDashboard"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card cattle">
+                        <div class="stat-icon">🐄</div>
+                        <div class="stat-content">
+                            <div class="stat-value">248</div>
+                            <div class="stat-label">Total Cattle</div>
+                            <div class="stat-change positive">+5 this month</div>
+                        </div>
+                    </div>
+                    <div class="stat-card milk">
+                        <div class="stat-icon">🥛</div>
+                        <div class="stat-content">
+                            <div class="stat-value">1,850L</div>
+                            <div class="stat-label">Daily Milk Production</div>
+                            <div class="stat-change positive">+12% from yesterday</div>
+                        </div>
+                    </div>
+                    <div class="stat-card revenue">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-content">
+                            <div class="stat-value">₹45,200</div>
+                            <div class="stat-label">Today's Revenue</div>
+                            <div class="stat-change positive">+8% from avg</div>
+                        </div>
+                    </div>
+                    <div class="stat-card alerts">
+                        <div class="stat-icon">🚨</div>
+                        <div class="stat-content">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Active Orders</div>
+                            <div class="stat-change positive">3 new today</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="chart-container">
+                    <h3 class="chart-title">Milk Production  (Last 7 Days)</h3>
+                    <canvas id="milkChart" width="400" height="200"></canvas>
+                </div>
+                <div class="charts-grid">
+    <!-- Revenue Distribution Pie Chart -->
+    <div class="chart-card">
+        <h3 class="chart-title">Revenue Distribution</h3>
+        <canvas id="revenueChart" width="300" height="300"></canvas>
+    </div>
+    
+    <!-- Cattle Health Status -->
+    <div class="chart-card">
+        <h3 class="chart-title">Cattle Health Status</h3>
+        <canvas id="healthChart" width="300" height="300"></canvas>
+    </div>
+</div>
+
+<!-- Monthly Production Comparison -->
+<div class="chart-container">
+    <h3 class="chart-title">Monthly Production Comparison</h3>
+    <canvas id="monthlyChart" width="400" height="200"></canvas>
+</div>
+
+<!-- Farm Efficiency Metrics -->
+<div class="charts-grid">
+    <!-- Feed Consumption -->
+    <div class="chart-card">
+        <h3 class="chart-title">Feed Consumption (kg/day)</h3>
+        <canvas id="feedChart" width="300" height="200"></canvas>
+    </div>
+    
+    <!-- Customer Orders Status -->
+    <div class="chart-card">
+        <h3 class="chart-title">Order Status Distribution</h3>
+        <canvas id="ordersChart" width="300" height="300"></canvas>
+    </div>
+</div>
+
+            </div>
+
+            <!-- Cattle Management -->
+            <div id="cattle-management" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Cattle Management</h1>
+                    <p class="dashboard-subtitle">Manage your cattle inventory, tracking, and records</p>
+                </div>
+                <iframe src="cattlemanagement1.html" title="Cattle Management"></iframe>
+            </div>
+
+            <!-- Certification -->
+            <div id="certification" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Certification</h1>
+                    <p class="dashboard-subtitle">Manage farm certifications and compliance</p>
+                </div>
+                <iframe src="newcertification.html" title="Certification"></iframe>
+            </div>
+
+            <!-- Clients -->
+            <div id="clients" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Clients</h1>
+                    <p class="dashboard-subtitle">Manage client relationships and interactions</p>
+                </div>
+                <iframe src="newclients.html" title="Clients"></iframe>
+            </div>
+
+            <!-- Communication -->
+            <div id="communication" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Communication</h1>
+                    <p class="dashboard-subtitle">Manage all communication channels</p>
+                </div>
+                <iframe src="communication.html" title="Communication"></iframe>
+            </div>
+
+            <!-- Contact Management -->
+            <div id="contact-management" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Contact Management</h1>
+                    <p class="dashboard-subtitle">Organize and manage all your contacts</p>
+                </div>
+                <iframe src="contact management.html" title="Contact Management"></iframe>
+            </div>
+
+            <!-- Customer Management -->
+            <div id="customer-management" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Customer Management</h1>
+                    <p class="dashboard-subtitle">Comprehensive customer relationship management</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Customer Management Module<br><br>🤝 Customer Database<br>📊 Customer Insights<br>💼 Account History<br>🎯 Customer Segmentation</h2>" title="Customer Management"></iframe>
+            </div>
+
+            <!-- Customer Profile -->
+            <div id="customer-profile" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Customer Profile</h1>
+                    <p class="dashboard-subtitle">Detailed customer profile management</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Customer Profile Module<br><br>👤 Profile Management<br>📊 Purchase History<br>💳 Payment Methods<br>📝 Notes & Tags</h2>" title="Customer Profile"></iframe>
+            </div>
+
+            <!-- Employee Management -->
+            <div id="employee-management" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Employee Management</h1>
+                    <p class="dashboard-subtitle">Manage farm staff and workforce</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Employee Management Module<br><br>👷 Staff Directory<br>⏰ Time Tracking<br>💰 Payroll Management<br>📋 Performance Reviews</h2>" title="Employee Management"></iframe>
+            </div>
+
+            <!-- Financial Management -->
+            <div id="financial-management" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Financial Management</h1>
+                    <p class="dashboard-subtitle">Comprehensive financial tracking and reporting</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Financial Management Module<br><br>💰 Revenue Tracking<br>📊 Financial Reports<br>💳 Expense Management<br>📈 Profit Analysis</h2>" title="Financial Management"></iframe>
+            </div>
+
+            <!-- Farmer Relationship -->
+            <div id="farmer-relationship" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Farmer Relationship</h1>
+                    <p class="dashboard-subtitle">Manage relationships with partner farmers</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Farmer Relationship Module<br><br>🚜 Partner Network<br>🤝 Collaboration Tools<br>📊 Performance Metrics<br>💰 Payment Tracking</h2>" title="Farmer Relationship"></iframe>
+            </div>
+
+            <!-- Herd Management -->
+            <div id="herd-management" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Herd Management</h1>
+                    <p class="dashboard-subtitle">Comprehensive herd monitoring and management</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Herd Management Module<br><br>🐮 Herd Overview<br>📊 Health Monitoring<br>🥛 Production Tracking<br>📅 Breeding Schedule</h2>" title="Herd Management"></iframe>
+            </div>
+
+            <!-- Livestock Management -->
+            <div id="livestock-management" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Livestock Management</h1>
+                    <p class="dashboard-subtitle">Complete livestock management system</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Livestock Management Module<br><br>🐄 Animal Registry<br>🏥 Health Records<br>🌾 Feed Management<br>📊 Performance Analytics</h2>" title="Livestock Management"></iframe>
+            </div>
+
+            <!-- Orders -->
+            <div id="orders" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Orders</h1>
+                    <p class="dashboard-subtitle">Manage customer orders and fulfillment</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Orders Management Module<br><br>📋 Order Processing<br>📦 Fulfillment Tracking<br>🚚 Delivery Management<br>📊 Order Analytics</h2>" title="Orders"></iframe>
+            </div>
+
+            <!-- Payment & Billing -->
+            <div id="payment-billing" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Payment & Billing</h1>
+                    <p class="dashboard-subtitle">Handle payments and billing operations</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Payment & Billing Module<br><br>💳 Payment Processing<br>🧾 Invoice Management<br>📊 Billing Analytics<br>💰 Revenue Tracking</h2>" title="Payment & Billing"></iframe>
+            </div>
+
+            <!-- Products -->
+            <div id="products" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Products</h1>
+                    <p class="dashboard-subtitle">Manage your dairy product portfolio</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Products Module<br><br>🥛 Product Inventory<br>📦 Stock Management<br>🏷️ Product Labeling<br>📊 Quality Control</h2>" title="Products"></iframe>
+            </div>
+
+            <!-- Product Analysis -->
+            <div id="product-analysis" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Product Analysis</h1>
+                    <p class="dashboard-subtitle">Analyze product performance and trends</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Product Analysis Module<br><br>📈 Sales Performance<br>📊 Market Trends<br>💹 Profitability Analysis<br>🎯 Product Optimization</h2>" title="Product Analysis"></iframe>
+            </div>
+
+            <!-- Product Catalog -->
+            <div id="product-catalog" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Product Catalog</h1>
+                    <p class="dashboard-subtitle">Comprehensive product catalog management</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Product Catalog Module<br><br>📚 Catalog Management<br>🖼️ Product Images<br>📝 Product Descriptions<br>💰 Pricing Management</h2>" title="Product Catalog"></iframe>
+            </div>
+
+            <!-- Sales & Marketing -->
+            <div id="sales-marketing" class="content-frame">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Sales & Marketing</h1>
+                    <p class="dashboard-subtitle">Drive sales and marketing initiatives</p>
+                </div>
+                <iframe src="data:text/html,<h2 style='text-align:center; color:#666; padding:50px;'>Sales & Marketing Module<br><br>📢 Marketing Campaigns<br>📊 Sales Analytics<br>🎯 Lead Management<br>💼 Customer Acquisition</h2>" title="Sales & Marketing"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="newdashboard.js"></script>
+</body>
+</html>
